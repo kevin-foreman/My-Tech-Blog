@@ -55,4 +55,4 @@ User.init(
     }
 );
 
-Model.exports = User;
+module.exports = User;
