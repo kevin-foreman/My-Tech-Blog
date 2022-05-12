@@ -5,11 +5,12 @@ const { Post, User } = require('../models');
 
 // get all posts for homepage
 router.get('/', (req, res) => {
-    console.log('======================');
+    console.log(req.session);
     Post.findAll({
         attributes: [
             'id',
             'title',
+            'post_content',
             'created_at'
         ],
         include: [
@@ -33,8 +34,13 @@ router.get('/', (req, res) => {
         });
 });
 
+// Redirect to the homepage if a user is logged in (session detected)
 router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+
     res.render('login');
 });
-
 module.exports = router;

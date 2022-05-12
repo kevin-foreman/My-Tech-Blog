@@ -17,6 +17,8 @@ async function signupFormHandler(event) {
             }),
             headers: { 'Content-Type': 'application/json' }
         });
+
+        // check the response status
         if (response.ok) {
             console.log('success');
         } else {
@@ -24,7 +26,6 @@ async function signupFormHandler(event) {
         }
     }
 }
-
 // Set up Login form similar to the 'sign up' form
 async function loginFormHandler(event) {
     event.preventDefault();
@@ -50,5 +51,5 @@ async function loginFormHandler(event) {
     }
 }
 
-
+document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
 document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
