@@ -40,11 +40,8 @@ User.init(
                 len: [4]
             }
         }
-
     },
-
     {
-
         hooks: {
             // set up beforeCreate lifecycle "hook" functionality
             async beforeCreate(newUserData) {
@@ -57,7 +54,6 @@ User.init(
                 return updatedUserData;
             }
         },
-
         // TABLE configuration options here (https://sequelize.org/v5/manual/models-definition.html#configuration))
 
         // Pass in imported sequelize connection
