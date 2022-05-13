@@ -7,7 +7,7 @@
         <a>{{post.post_content}}</a>
     </div>
     <div class="meta">
-        by {{post.user.username}} on
+        by {{post.User.username}} on
         {{post.created_at}}
     </div>
 </article>
@@ -27,7 +27,7 @@
     {{#each post.comments}}
     <section class="comment">
         <div class="meta">
-            {{user.username}} on {{created_at}}
+            {{post.User.username}} on {{created_at}}
         </div>
         <div class="text">
             {{comment_text}}
