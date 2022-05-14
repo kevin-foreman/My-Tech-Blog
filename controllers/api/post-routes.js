@@ -7,7 +7,7 @@ const { Post, User, Comment } = require('../../models');
 router.get('/', (req, res) => {
     console.log('=======/\========/\=======');
     Post.findAll({
-        // Query configuration
+        // Post query configuration
         attributes: ['id', 'post_content', 'title', 'created_at'],
         order: [['created_at', 'DESC']],
 
@@ -61,19 +61,21 @@ router.get('/:id', (req, res) => {
         });
 });
 
-// Route to post to the database
+// Route to post new content to the database
 router.post('/', (req, res) => {
-    // expects {title: 'Taskmaster goes public!', post_content: 'https://taskmaster.com/press', user_id: 1}
+    // expects {title: 'Octocat reaches 2 million subscribers', post_content: 'This dude is on his grind', user_id: 1}
+    if (req.session) {
     Post.create({
         title: req.body.title,
         post_content: req.body.post_content,
-        user_id: req.body.user_id
+        user_id: req.session.user_id
     })
         .then(dbPostData => res.json(dbPostData))
         .catch(err => {
             console.log(err);
             res.status(500).json(err);
         });
+    }
 });
 
 // Route to update a post's title
